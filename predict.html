@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Miami House Price Prediction</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --secondary: #6366f1;
+            --bg: #f4f6fb;
+            --card: #ffffff;
+            --text: #1f2937;
+            --muted: #6b7280;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+        }
+
+        /* HEADER */
+        header {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            padding: 20px 40px;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            font-size: 22px;
+            margin: 0;
+        }
+
+        nav a {
+            color: #fff;
+            margin-left: 20px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* MAIN */
+        main {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .title {
+            margin-bottom: 25px;
+        }
+
+        .title h2 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .title p {
+            color: var(--muted);
+        }
+
+        /* CARD */
+        .card {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+        }
+
+        /* FORM GRID */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .field label {
+            font-size: 13px;
+            margin-bottom: 6px;
+            color: var(--muted);
+        }
+
+        .field input {
+            padding: 10px 12px;
+            border-radius: 8px;
+            border: 1px solid #d1d5db;
+            font-size: 14px;
+        }
+
+        .field input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        /* BUTTON */
+        .btn {
+            margin-top: 25px;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 14px;
+            width: 100%;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #4338ca;
+        }
+
+        /* RESULT */
+        .result {
+            margin-top: 30px;
+            background: #eef2ff;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .result h3 {
+            margin: 0;
+            color: var(--primary);
+        }
+
+        .price {
+            font-size: 32px;
+            font-weight: 700;
+            margin-top: 10px;
+        }
+
+        footer {
+            margin-top: 60px;
+            padding: 20px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>🏠 HousePredict</h1>
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Predict</a>
+    </nav>
+</header>
+
+<main>
+    <div class="title">
+        <h2>Miami House Price Prediction</h2>
+        <p>Enter property details below to estimate the house price using a machine learning model.</p>
+    </div>
+
+    <div class="card">
+        <div class="grid">
+            <div class="field">
+                <label>Total Living Area</label>
+                <input type="number">
+            </div>
+
+            <div class="field">
+                <label>Land Square Foot</label>
+                <input type="number">
+            </div>
+
+            <div class="field">
+                <label>Distance to Ocean</label>
+                <input type="number">
+            </div>
+
+            <div class="field">
+                <label>Water Distance</label>
+                <input type="number">
+            </div>
+
+            <div class="field">
+                <label>Central Distance</label>
+                <input type="number">
+            </div>
+
+            <div class="field">
+                <label>Sub-Central Distance</label>
+                <input type="number">
+            </div>
+
+            <div class="field">
+                <label>Rail Distance</label>
+                <input type="number">
+            </div>
+
+            <div class="field">
+                <label>Structure Quality</label>
+                <input type="number">
+            </div>
+
+            <div class="field">
+                <label>Building Age</label>
+                <input type="number">
+            </div>
+
+            <div class="field">
+                <label>Longitude</label>
+                <input type="number" step="any">
+            </div>
+
+            <div class="field">
+                <label>Special Feature Value</label>
+                <input type="number">
+            </div>
+
+            <div class="field">
+                <label>Parcel Number</label>
+                <input type="number">
+            </div>
+        </div>
+
+        <button class="btn" onclick="predictPrice()">Predict House Price</button>
+
+        <div class="result" id="result">
+            <h3>Predicted Price</h3>
+            <div class="price" id="price">$0.00</div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    © 2025 Miami House Price Prediction | Machine Learning Project
+</footer>
+
+<script>
+    function predictPrice() {
+        // Dummy value (replace with ML/API result)
+        const price = (Math.random() * 900000 + 100000).toFixed(2);
+        document.getElementById("price").innerText = "$" + price;
+    }
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Miami House Price Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+</html>
+
